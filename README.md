@@ -6,7 +6,7 @@ Bilingual (English / Brazilian Portuguese) verse-by-verse study site.
 
 Once your site is live, open each .html file and replace the placeholder:
 
-    YOUR_GITHUB_PAGES_URL
+    https://adisfalsin.github.io/galatians
 
 with your actual URL, for example:
 
