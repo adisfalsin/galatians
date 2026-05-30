@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudo do Livro de Gálatas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#f7f3eb;--parchment-dark:#ede7d9;--ink:#1c1a16;--ink-light:#4a4540;
+    --ink-faint:#8a8278;--gold:#b8860b;--gold-light:#d4a017;--gold-pale:#f5e6b8;
+    --teal:#0f6e56;--teal-light:#e1f5ee;--teal-mid:#1d9e75;
+    --coral:#993c1d;--coral-light:#faece7;--coral-mid:#d85a30;
+    --amber:#854f0b;--amber-light:#faeeda;--amber-mid:#ba7517;
+    --purple:#534ab7;--purple-light:#eeedfe;
+    --gray-light:#f1efe8;--border:#d6cfc2;--shadow:rgba(28,26,22,0.08);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--parchment);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.8;font-size:16px;}
+  .site-header{background:var(--ink);color:var(--parchment);padding:52px 40px 44px;text-align:center;position:relative;overflow:hidden;}
+  .site-header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(184,134,11,0.04) 40px,rgba(184,134,11,0.04) 41px);}
+  .back-link{position:absolute;top:20px;left:24px;font-size:12px;font-weight:400;letter-spacing:0.1em;color:rgba(247,243,235,0.5);text-decoration:none;text-transform:uppercase;transition:color .2s;z-index:2;}
+  .back-link:hover{color:var(--gold-light);}
+  .header-label{font-size:11px;font-weight:400;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;position:relative;}
+  .header-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3.4rem);font-weight:400;line-height:1.15;color:var(--parchment);margin-bottom:10px;position:relative;}
+  .header-title em{font-style:italic;color:var(--gold-light);}
+  .header-verse{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(247,243,235,0.6);max-width:600px;margin:0 auto;position:relative;}
+  .header-rule{width:48px;height:1px;background:var(--gold);margin:22px auto 0;position:relative;}
+  /* language switcher */
+  .lang-switch{position:absolute;top:18px;right:22px;display:flex;gap:8px;z-index:3;}
+  .lang-switch a{display:flex;align-items:center;justify-content:center;width:34px;height:24px;border-radius:4px;overflow:hidden;border:1.5px solid transparent;opacity:0.55;transition:opacity .2s,border-color .2s;}
+  .lang-switch a:hover{opacity:0.9;}
+  .lang-switch a.active{opacity:1;border-color:var(--gold-light);}
+  .lang-switch svg{width:100%;height:100%;display:block;}
+  .container{max-width:860px;margin:0 auto;padding:60px 32px;}
+  .section-number{font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:20px;}
+  .section-divider{width:36px;height:1px;background:var(--gold);margin:0 0 26px;}
+  .prose p{color:var(--ink-light);margin-bottom:20px;font-size:16px;line-height:1.85;}
+  .prose p:last-child{margin-bottom:0;}
+  .prose strong{color:var(--ink);font-weight:500;}
+  .prose em{font-style:italic;color:var(--ink);}
+  .scripture{border-left:3px solid var(--gold);background:var(--gold-pale);padding:20px 24px;margin:28px 0;border-radius:0 6px 6px 0;}
+  .scripture p{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--ink);line-height:1.7;margin:0;}
+  .scripture cite{display:block;margin-top:8px;font-family:'DM Sans',sans-serif;font-size:12px;font-style:normal;font-weight:400;letter-spacing:0.1em;color:var(--amber);}
+  .callout{background:var(--parchment-dark);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin:28px 0;}
+  .callout-label{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px;}
+  .callout p{font-size:15px;color:var(--ink-light);line-height:1.8;margin:0;}
+  .diagram-card{background:white;border:1px solid var(--border);border-radius:10px;padding:28px 20px 20px;margin:36px 0;box-shadow:0 2px 12px var(--shadow);overflow:hidden;}
+  .diagram-label{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:16px;padding-left:4px;}
+  .diagram-card svg{width:100%;height:auto;display:block;}
+  .summary-table{width:100%;border-collapse:collapse;margin:28px 0;font-size:14px;}
+  .summary-table thead tr{background:var(--ink);color:var(--parchment);}
+  .summary-table thead th{padding:12px 18px;text-align:left;font-family:'DM Sans',sans-serif;font-weight:400;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;}
+  .summary-table tbody tr{border-bottom:1px solid var(--border);}
+  .summary-table tbody tr:nth-child(even){background:var(--gray-light);}
+  .summary-table tbody td{padding:12px 18px;color:var(--ink-light);line-height:1.6;vertical-align:top;}
+  .summary-table tbody td:first-child{color:var(--coral);font-weight:400;}
+  .summary-table tbody td:last-child{color:var(--teal);}
+  .closing{background:var(--ink);color:var(--parchment);padding:48px 40px;text-align:center;border-radius:10px;margin-top:48px;}
+  .closing p{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;line-height:1.75;color:rgba(247,243,235,0.9);max-width:640px;margin:0 auto;}
+  .closing strong{color:var(--gold-light);font-style:normal;}
+  .section-sep{border:none;border-top:1px solid var(--border);margin:52px 0;}
+  /* postcard download */
+  .postcard-block{background:var(--ink);border-radius:12px;padding:32px;margin:44px 0;display:flex;gap:28px;align-items:center;flex-wrap:wrap;}
+  .postcard-thumb{flex:0 0 280px;max-width:280px;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.12);}
+  .postcard-thumb img{width:100%;display:block;}
+  .postcard-info{flex:1;min-width:220px;}
+  .postcard-info h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--parchment);margin-bottom:8px;}
+  .postcard-info p{font-size:14px;color:rgba(247,243,235,0.6);line-height:1.7;margin-bottom:18px;}
+  .download-btn{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:500;font-size:14px;letter-spacing:0.04em;padding:13px 24px;border-radius:8px;text-decoration:none;transition:background .2s,transform .15s;}
+  .download-btn:hover{background:var(--gold-light);transform:translateY(-2px);}
+  .download-btn svg{width:18px;height:18px;}
+  svg.map{--t:#4a4540;}
+  svg.map text{font-family:'DM Sans',sans-serif;fill:#4a4540;}
+  svg.map text.th{font-size:13px;font-weight:500;fill:#1c1a16;}
+  svg.map text.ts{font-size:11px;font-weight:300;fill:#4a4540;}
+  svg.map .arr{stroke:#8a8278;stroke-width:1.5;fill:none;}
+  svg.map .c-teal rect{fill:#e1f5ee;stroke:#0f6e56;}
+  svg.map .c-teal text.th{fill:#085041;}svg.map .c-teal text.ts{fill:#0f6e56;}
+  svg.map .c-coral rect{fill:#faece7;stroke:#993c1d;}
+  svg.map .c-coral text.th{fill:#712b13;}svg.map .c-coral text.ts{fill:#993c1d;}
+  svg.map .c-amber rect{fill:#faeeda;stroke:#854f0b;}
+  svg.map .c-amber text.th{fill:#633806;}svg.map .c-amber text.ts{fill:#854f0b;}
+  svg.map .c-purple rect{fill:#eeedfe;stroke:#534ab7;}
+  svg.map .c-purple text.th{fill:#3c3489;}svg.map .c-purple text.ts{fill:#534ab7;}
+  svg.map .c-gray rect{fill:#f1efe8;stroke:#5f5e5a;}
+  svg.map .c-gray text.th{fill:#2c2c2a;}svg.map .c-gray text.ts{fill:#5f5e5a;}
+  footer{background:var(--ink);color:rgba(247,243,235,0.35);text-align:center;padding:32px;font-size:12px;letter-spacing:0.08em;}
+  @media(max-width:600px){.container{padding:40px 20px;}.site-header{padding:48px 20px 36px;}.diagram-card{padding:16px 10px 12px;}.postcard-block{padding:22px;}.postcard-thumb{flex:1 0 100%;max-width:100%;}}
+
+  body{min-height:100vh;display:flex;flex-direction:column;}
+  .hero{background:var(--ink);padding:80px 40px 72px;text-align:center;position:relative;overflow:hidden;flex-shrink:0;}
+  .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(184,134,11,0.04) 40px,rgba(184,134,11,0.04) 41px);}
+  .hero-label{font-size:11px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-light);margin-bottom:20px;position:relative;}
+  .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:400;color:var(--parchment);line-height:1.05;margin-bottom:16px;position:relative;}
+  .hero-title em{font-style:italic;color:var(--gold-light);}
+  .hero-sub{font-size:15px;font-weight:300;color:rgba(247,243,235,0.55);max-width:480px;margin:0 auto;line-height:1.7;position:relative;}
+  .hero-rule{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);margin:32px auto 0;position:relative;}
+  .intro-strip{background:var(--parchment-dark);border-bottom:1px solid var(--border);padding:28px 40px;text-align:center;}
+  .intro-strip p{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--ink-light);max-width:620px;margin:0 auto;line-height:1.75;}
+  .studies{flex:1;max-width:1000px;margin:0 auto;padding:64px 32px 80px;width:100%;}
+  .studies-heading{font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;text-align:center;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;}
+  .card{background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 2px 16px var(--shadow);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(28,26,22,0.14);}
+  .card:hover .card-arrow{transform:translateX(4px);}
+  .card-band{height:5px;}
+  .card-band-teal{background:var(--teal);}
+  .card-band-amber{background:var(--amber);}
+  .card-body{padding:32px 32px 24px;flex:1;display:flex;flex-direction:column;}
+  .card-ref{font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;}
+  .card-title{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:600;line-height:1.15;margin-bottom:16px;color:var(--ink);}
+  .card-verse{border-left:2px solid var(--gold);padding:12px 16px;background:var(--gold-pale);border-radius:0 5px 5px 0;margin-bottom:20px;}
+  .card-verse p{font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-style:italic;color:var(--ink-light);line-height:1.65;margin:0;}
+  .card-desc{font-size:14px;font-weight:300;color:var(--ink-faint);line-height:1.75;flex:1;}
+  .card-footer{padding:20px 32px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+  .card-tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;border:1px solid;}
+  .tag-teal{color:var(--teal);border-color:var(--teal);background:var(--teal-light);}
+  .tag-amber{color:var(--amber);border-color:var(--amber);background:var(--amber-light);}
+  .tag-purple{color:var(--purple);border-color:var(--purple);background:var(--purple-light);}
+  .tag-coral{color:var(--coral);border-color:var(--coral);background:var(--coral-light);}
+  .card-arrow{font-size:18px;color:var(--gold);transition:transform .2s;line-height:1;}
+  .series-info{max-width:680px;margin:0 auto;padding:52px 32px;text-align:center;}
+  .series-info h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--ink);margin-bottom:16px;}
+  .series-info p{font-size:14px;color:var(--ink-faint);line-height:1.8;margin-bottom:10px;}
+  .series-info p:last-child{margin-bottom:0;}
+  .hero .lang-switch{top:22px;right:26px;}
+  @media(max-width:600px){.hero{padding:56px 24px 52px;}.studies{padding:48px 20px 60px;}.grid{grid-template-columns:1fr;}.intro-strip{padding:24px 20px;}.card-body{padding:24px 24px 18px;}.card-footer{padding:16px 24px 22px;}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="lang-switch">
+    <a href="index.html" aria-label="English" title="English"><svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="40" fill="#012169"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#fff" stroke-width="8"/><path d="M0,0 L60,40 M60,0 L0,40" stroke="#C8102E" stroke-width="4"/><path d="M30,0 V40 M0,20 H60" stroke="#fff" stroke-width="13"/><path d="M30,0 V40 M0,20 H60" stroke="#C8102E" stroke-width="8"/></svg></a>
+    <a href="index-pt.html" class="active" aria-label="Português" title="Português (Brasil)"><svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg"><rect width="60" height="40" fill="#009B3A"/><path d="M30,4 L54,20 L30,36 L6,20 Z" fill="#FEDF00"/><circle cx="30" cy="20" r="8.5" fill="#002776"/><path d="M22,18 A10,10 0 0 1 38,21" stroke="#fff" stroke-width="1.6" fill="none"/></svg></a>
+  </div>
+  <div class="hero-label">Um Estudo Versículo por Versículo</div>
+  <h1 class="hero-title">A Carta aos<br><em>Gálatas</em></h1>
+  <p class="hero-sub">A Torá, a maldição e a vida guiada pelo Espírito — explorada versículo por versículo</p>
+  <div class="hero-rule"></div>
+</header>
+<div class="intro-strip"><p>"Anulamos, porventura, a lei pela fé? De modo nenhum! Antes, confirmamos a lei." — Romanos 3:31</p></div>
+<main class="studies">
+  <div class="studies-heading">Escolha uma passagem para estudar</div>
+  <div class="grid">
+    <a class="card" href="galatians-518-pt.html">
+      <div class="card-band card-band-teal"></div>
+      <div class="card-body">
+        <div class="card-ref">Gálatas · Capítulo 5 · Versículo 18</div>
+        <h2 class="card-title">Livres da lei,<br>mas não livres de Deus</h2>
+        <div class="card-verse"><p>"Mas, se sois guiados pelo Espírito, não estais debaixo da lei."</p></div>
+        <p class="card-desc">O que significa estar "fora da lei"? A Torá foi abolida? Este estudo revela o verdadeiro alvo de Paulo — o legalismo — e mostra por que o Espírito e a Torá não são inimigos, mas parceiros na vida da Nova Aliança.</p>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag tag-teal">Espírito &amp; Torá</span><span class="tag tag-purple">Nova Aliança</span><span class="tag tag-teal">5 mapas visuais</span></div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+    </a>
+    <a class="card" href="galatians-313-pt.html">
+      <div class="card-band card-band-amber"></div>
+      <div class="card-body">
+        <div class="card-ref">Gálatas · Capítulo 3 · Versículo 13</div>
+        <h2 class="card-title">Cristo nos resgatou da<br>maldição da lei</h2>
+        <div class="card-verse"><p>"Cristo nos resgatou da maldição da lei, fazendo-se maldição em nosso lugar."</p></div>
+        <p class="card-desc">O que é a maldição — e por que o Messias "fazer-se maldição" nos liberta? Este estudo traça o arco de Deuteronômio à cruz e à bênção de Abraão, mostrando como a lei permanece de pé enquanto o seu veredicto já não recai sobre nós.</p>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags"><span class="tag tag-amber">Expiação</span><span class="tag tag-coral">A maldição</span><span class="tag tag-amber">5 mapas visuais</span></div>
+        <span class="card-arrow">&rarr;</span>
+      </div>
+    </a>
+  </div>
+</main>
+<div class="series-info">
+  <h2>Sobre este estudo</h2>
+  <p>Estes estudos exploram a carta aos Gálatas versículo por versículo — levando a sério o pano de fundo judaico dos escritos de Paulo e o papel contínuo da Torá dentro da Nova Aliança.</p>
+  <p>Cada estudo é autossuficiente, com explicações completas, referências bíblicas, cartões para baixar e mapas visuais que constroem o entendimento passo a passo.</p>
+</div>
+<footer>Estudo do Livro de Gálatas</footer>
+</body>
+</html>
