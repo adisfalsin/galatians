@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galatians — Study of the Book of Galatians</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment:#f7f3eb;--parchment-dark:#ede7d9;--ink:#1c1a16;--ink-light:#4a4540;
+    --ink-faint:#8a8278;--gold:#b8860b;--gold-light:#d4a017;--gold-pale:#f5e6b8;
+    --teal:#0f6e56;--teal-mid:#1d9e75;--teal-light:#e1f5ee;
+    --coral:#993c1d;--coral-light:#faece7;
+    --amber:#854f0b;--amber-light:#faeeda;
+    --purple:#534ab7;--purple-light:#eeedfe;
+    --border:#d6cfc2;--shadow:rgba(28,26,22,0.1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--parchment);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.8;min-height:100vh;display:flex;flex-direction:column;}
+
+  /* ── Hero ── */
+  .hero{background:var(--ink);padding:80px 40px 72px;text-align:center;position:relative;overflow:hidden;flex-shrink:0;}
+  .hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(184,134,11,0.04) 40px,rgba(184,134,11,0.04) 41px);}
+  .hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:1px;height:40px;background:linear-gradient(to bottom,rgba(184,134,11,0.4),transparent);}
+  .hero-label{font-size:11px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-light);margin-bottom:20px;position:relative;}
+  .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:400;color:var(--parchment);line-height:1.05;margin-bottom:16px;position:relative;}
+  .hero-title em{font-style:italic;color:var(--gold-light);}
+  .hero-sub{font-size:15px;font-weight:300;color:rgba(247,243,235,0.55);max-width:460px;margin:0 auto;line-height:1.7;position:relative;}
+  .hero-rule{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);margin:32px auto 0;position:relative;}
+
+  /* ── Intro strip ── */
+  .intro-strip{background:var(--parchment-dark);border-bottom:1px solid var(--border);padding:28px 40px;text-align:center;}
+  .intro-strip p{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--ink-light);max-width:620px;margin:0 auto;line-height:1.75;}
+
+  /* ── Study grid ── */
+  .studies{flex:1;max-width:1000px;margin:0 auto;padding:64px 32px 80px;width:100%;}
+  .studies-heading{font-family:'Cormorant Garamond',serif;font-size:11px;font-weight:400;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:36px;text-align:center;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px;}
+
+  /* ── Study card ── */
+  .card{background:white;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 2px 16px var(--shadow);text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .22s ease,box-shadow .22s ease;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(28,26,22,0.14);}
+  .card:hover .card-arrow{transform:translateX(4px);}
+
+  .card-band{height:5px;}
+  .card-band-teal{background:var(--teal);}
+  .card-band-amber{background:var(--amber);}
+
+  .card-body{padding:32px 32px 24px;flex:1;display:flex;flex-direction:column;}
+  .card-ref{font-size:10px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;}
+  .card-title{font-family:'Cormorant Garamond',serif;font-size:1.85rem;font-weight:600;line-height:1.15;margin-bottom:16px;color:var(--ink);}
+  .card-verse{border-left:2px solid var(--gold);padding:12px 16px;background:var(--gold-pale);border-radius:0 5px 5px 0;margin-bottom:20px;}
+  .card-verse p{font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-style:italic;color:var(--ink-light);line-height:1.65;margin:0;}
+  .card-desc{font-size:14px;font-weight:300;color:var(--ink-faint);line-height:1.75;flex:1;}
+
+  .card-footer{padding:20px 32px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);}
+  .card-tags{display:flex;gap:8px;flex-wrap:wrap;}
+  .tag{font-size:10px;font-weight:400;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:20px;border:1px solid;}
+  .tag-teal{color:var(--teal);border-color:var(--teal);background:var(--teal-light);}
+  .tag-amber{color:var(--amber);border-color:var(--amber);background:var(--amber-light);}
+  .tag-purple{color:var(--purple);border-color:var(--purple);background:var(--purple-light);}
+  .tag-coral{color:var(--coral);border-color:var(--coral);background:var(--coral-light);}
+
+  .card-arrow{font-size:18px;color:var(--gold);transition:transform .2s;line-height:1;}
+
+  /* ── Divider map preview ── */
+  .map-preview{background:var(--parchment-dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:48px 32px;text-align:center;}
+  .map-preview-label{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:20px;}
+  .map-preview svg{max-width:680px;width:100%;display:inline-block;}
+
+  /* ── Series info ── */
+  .series-info{max-width:680px;margin:0 auto;padding:52px 32px;text-align:center;}
+  .series-info h2{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--ink);margin-bottom:16px;}
+  .series-info p{font-size:14px;color:var(--ink-faint);line-height:1.8;margin-bottom:10px;}
+  .series-info p:last-child{margin-bottom:0;}
+
+  footer{background:var(--ink);color:rgba(247,243,235,0.35);text-align:center;padding:32px;font-size:12px;letter-spacing:0.08em;flex-shrink:0;}
+
+  @media(max-width:600px){
+    .hero{padding:56px 24px 52px;}
+    .studies{padding:48px 20px 60px;}
+    .grid{grid-template-columns:1fr;}
+    .intro-strip{padding:24px 20px;}
+    .card-body{padding:24px 24px 18px;}
+    .card-footer{padding:16px 24px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Hero ── -->
+<header class="hero">
+  <div class="hero-label">Study of the Book of Galatians</div>
+  <h1 class="hero-title">The Letter to the<br><em>Galatians</em></h1>
+  <p class="hero-sub">Torah, the curse, and the life led by the Spirit — explored verse by verse from a Hebraic perspective</p>
+  <div class="hero-rule"></div>
+</header>
+
+<!-- ── Intro ── -->
+<div class="intro-strip">
+  <p>"Do we then make void the Torah through faith? Certainly not! On the contrary, we establish the Torah." — Romans 3:31</p>
+</div>
+
+<!-- ── Studies ── -->
+<main class="studies">
+  <div class="studies-heading">Choose a passage to study</div>
+
+  <div class="grid">
+
+    <!-- Card 1: Gal 5:18 -->
+    <a class="card" href="galatians-518.html">
+      <div class="card-band card-band-teal"></div>
+      <div class="card-body">
+        <div class="card-ref">Galatians 5 · Verse 18</div>
+        <h2 class="card-title">Free from the law,<br>but not free from God</h2>
+        <div class="card-verse">
+          <p>"But if you are led by the Spirit, you are not under the law."</p>
+        </div>
+        <p class="card-desc">What does it mean to be "not under the law"? Is Torah abolished? This study unpacks Paul's exact target — legalism — and shows why the Spirit and Torah are not enemies but partners in the New Covenant life.</p>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-teal">Spirit &amp; Torah</span>
+          <span class="tag tag-purple">New Covenant</span>
+          <span class="tag tag-teal">5 vision maps</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Card 2: Gal 3:13 -->
+    <a class="card" href="galatians-313.html">
+      <div class="card-band card-band-amber"></div>
+      <div class="card-body">
+        <div class="card-ref">Galatians 3 · Verse 13</div>
+        <h2 class="card-title">Christ redeemed us from<br>the curse of the law</h2>
+        <div class="card-verse">
+          <p>"Christ redeemed us from the curse of the law by becoming a curse for us."</p>
+        </div>
+        <p class="card-desc">What is the curse — and why does Messiah becoming "cursed" set us free? This study traces the arc from Deuteronomy to the cross to the Abrahamic blessing, showing how the law still stands while its verdict no longer does.</p>
+      </div>
+      <div class="card-footer">
+        <div class="card-tags">
+          <span class="tag tag-amber">Atonement</span>
+          <span class="tag tag-coral">The curse</span>
+          <span class="tag tag-amber">5 vision maps</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<!-- ── Shared diagram preview ── -->
+<div class="map-preview">
+  <div class="map-preview-label">The thread connecting both studies</div>
+  <svg viewBox="0 0 680 130" role="img">
+    <title>Torah's journey from stone to heart</title>
+    <desc>Linear diagram showing Torah's movement from stone tablets through the cross to the heart by the Spirit</desc>
+    <defs>
+      <marker id="pm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+    </defs>
+    <style>
+      .pm-box rect{stroke-width:0.5;}
+      .pm-box text{font-family:'DM Sans',sans-serif;}
+      .pm-box text.th{font-size:12px;font-weight:500;}
+      .pm-box text.ts{font-size:10px;font-weight:300;}
+      .pm-arr{stroke:#8a8278;stroke-width:1.2;fill:none;}
+      .pm-amber rect{fill:#faeeda;stroke:#854f0b;}
+      .pm-amber text.th{fill:#633806;}
+      .pm-amber text.ts{fill:#854f0b;}
+      .pm-coral rect{fill:#faece7;stroke:#993c1d;}
+      .pm-coral text.th{fill:#712b13;}
+      .pm-coral text.ts{fill:#993c1d;}
+      .pm-purple rect{fill:#eeedfe;stroke:#534ab7;}
+      .pm-purple text.th{fill:#3c3489;}
+      .pm-purple text.ts{fill:#534ab7;}
+      .pm-teal rect{fill:#e1f5ee;stroke:#0f6e56;}
+      .pm-teal text.th{fill:#085041;}
+      .pm-teal text.ts{fill:#0f6e56;}
+    </style>
+    <g class="pm-box pm-amber">
+      <rect x="40" y="28" width="130" height="64" rx="8"/>
+      <text class="th" x="105" y="52" text-anchor="middle" dominant-baseline="central">Torah given</text>
+      <text class="ts" x="105" y="72" text-anchor="middle" dominant-baseline="central">on stone at Sinai</text>
+    </g>
+    <g class="pm-box pm-coral">
+      <rect x="210" y="28" width="130" height="64" rx="8"/>
+      <text class="th" x="275" y="52" text-anchor="middle" dominant-baseline="central">The curse falls</text>
+      <text class="ts" x="275" y="72" text-anchor="middle" dominant-baseline="central">no one keeps it fully</text>
+    </g>
+    <g class="pm-box pm-purple">
+      <rect x="380" y="28" width="130" height="64" rx="8"/>
+      <text class="th" x="445" y="52" text-anchor="middle" dominant-baseline="central">Messiah absorbs</text>
+      <text class="ts" x="445" y="72" text-anchor="middle" dominant-baseline="central">curse at the cross</text>
+    </g>
+    <g class="pm-box pm-teal">
+      <rect x="550" y="28" width="122" height="64" rx="8"/>
+      <text class="th" x="611" y="52" text-anchor="middle" dominant-baseline="central">Spirit writes</text>
+      <text class="ts" x="611" y="72" text-anchor="middle" dominant-baseline="central">Torah on the heart</text>
+    </g>
+    <line x1="170" y1="60" x2="208" y2="60" class="pm-arr" marker-end="url(#pm)"/>
+    <line x1="340" y1="60" x2="378" y2="60" class="pm-arr" marker-end="url(#pm)"/>
+    <line x1="510" y1="60" x2="548" y2="60" class="pm-arr" marker-end="url(#pm)"/>
+    <text style="font-family:'DM Sans',sans-serif;font-size:10px;fill:#8a8278;" x="340" y="118" text-anchor="middle">Gal 5:18 ← Spirit &amp; Torah · Gal 3:13 → curse &amp; redemption</text>
+  </svg>
+</div>
+
+<!-- ── Series info ── -->
+<div class="series-info">
+  <h2>About this study</h2>
+  <p>These studies explore the letter to the Galatians verse by verse — taking seriously the Jewish background of Paul's writing and the continuing role of Torah within the New Covenant.</p>
+  <p>Each study is self-contained, with full explanations, scripture references, and vision maps to build understanding step by step.</p>
+</div>
+
+<footer>Study of the Book of Galatians · The Letter to the Galatians</footer>
+
+</body>
+</html>
